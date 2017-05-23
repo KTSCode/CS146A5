@@ -43,6 +43,7 @@ In Part 2 you will execute the commands using system calls. As mentioned above, 
 			- $ foo='hello world' # there's a space in there
 			- $ prargs $foo # how many arguments is that?
 			- $ bar=$foo # does bar become 'hello' or 'hello world'?
+
   - **[4 marks]** Implement back-quotes, ie. an arbitrary nsh command line can be put in back-quotes, and its output is substituted onto the current command line. Remember to parse the spaces after substitution.
   - **[4 marks]** Implement double-quotes, so variables and back-quotes can be put inside them. (Of course this only makes sense if you've implemented at least one of variables or back-quotes.) It must support allowing double-quotes inside the double quotes using "\"".
   - **[6 marks]** Use lex(1) and yacc(1) to do the parsing for you. If you do this, it may actually make some of the other stuff easier, but there's alot to learn to do it. You may use GNU's flex(1) and bison(1) instead.
