@@ -17,6 +17,7 @@ The prompt is '? ', ie., a question mark followed by a space; nsh should exit wh
 
 Note there are spaces around every token; this makes it easier for you. You'll need to look (at least) at the following manual pages: fork(2), exec(2), pipe(2), open(2), creat(2), close(2), dup(2), dup2(3c). Note that you must be careful with files: you may be working with both Unix file descriptors (because those are the only things pipe(2) and dup(2) work with), and ANSI C (FILE *) pointers (because it will make some of the other stuff easier). You can, if you want, choose to work only with Unix file descriptors. For example, in the simple version of the shell above, the only thing you ever need to print is the prompt, so you don't really need the functionality of printf(3c). You are free to use versions of exec(2) that search the PATH for you (eg., execlp, execvp); you don’t need to search it yourself.
 
+
 ## PART 1: The Parser (15 marks. Due Thu 25 May, when a solution will be distributed)
 Since this will be quite a large project, you will split it into manageable chunks and put each chunk in a separately compiled module, and then use a Makefile. However, the Makefile is not due until Part 2. In part 1 you will write the "parser". A parser's job is to break up the line into its constituent logical parts. That means it needs to figure out if there is any input/output redirection (the < and > characters), how many pipes there are on the command line (which is one less than the number of commands between pipes---eg., “who | we” is two commands separated by one pipe), and what the command line arguments are to each command. You should create a **struct** which will hold a full command line with all this information, and put its definition into a file called **parse.h**. The file **parse.h** also contains a prototype for the function **Parse**, which will be defined in the file **parse.c**. Then create **parse.c**, which contains the code for the actual parser. The file **main.c** will contain a loop which (for now) just reads a line, pasess that line to the function **Parse**. **Parse** will populate the **struct** with the logical info on the command line, and then your **main** program will print out the parsed version of the command line. For example, given “cat –v <infile | grep foo | wc > outfile”, the Part 1 version of your main program should print:
   - `3: <’infile’ ‘cat’ ‘-v’ | ‘grep’ ‘foo’ | ‘wc’ > ‘outfile`
@@ -26,6 +27,14 @@ The ‘3’ represents the number of commands, and each “word” is printed wi
 
 A correct executable of the parser is in ~wayne/pub/cs146/nsh-parser. You can use it to see what yours should output for Part 1 of the assignment.
 
+### Part 1 TODO
+  - [ ] Struct that holds the entire line in file **parse.h**
+  - [ ] Prototype for function **Parse()** in file **parse.h**
+  - [ ] Function **Parse()** and code for parser in file **parse.c**
+  - [ ] Loop to take in input with ? prompt in file **main.c**
+  - [ ] If one argument is given to main.c then that argument should be interpreted as an nsh script
+
+----
 
 ## PART 2: Executing Commands (15 or more marks, due Thu of Week 10.)
 In Part 2 you will execute the commands using system calls. As mentioned above, the shell MUST implement shell scripting to facilitate easy testing of your shell, and your shell should be able to handle commands with at least one pipe. Handling multiple pipes (ie., more than 2 commands piped together) is worth extra marks, as described below
