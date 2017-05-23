@@ -19,7 +19,17 @@ Note there are spaces around every token; this makes it easier for you. You'll n
 
 
 ## PART 1: The Parser (15 marks. Due Thu 25 May, when a solution will be distributed)
-Since this will be quite a large project, you will split it into manageable chunks and put each chunk in a separately compiled module, and then use a Makefile. However, the Makefile is not due until Part 2. In part 1 you will write the "parser". A parser's job is to break up the line into its constituent logical parts. That means it needs to figure out if there is any input/output redirection (the < and > characters), how many pipes there are on the command line (which is one less than the number of commands between pipes---eg., “who | we” is two commands separated by one pipe), and what the command line arguments are to each command. You should create a **struct** which will hold a full command line with all this information, and put its definition into a file called **parse.h**. The file **parse.h** also contains a prototype for the function **Parse**, which will be defined in the file **parse.c**. Then create **parse.c**, which contains the code for the actual parser. The file **main.c** will contain a loop which (for now) just reads a line, pasess that line to the function **Parse**. **Parse** will populate the **struct** with the logical info on the command line, and then your **main** program will print out the parsed version of the command line. For example, given “cat –v <infile | grep foo | wc > outfile”, the Part 1 version of your main program should print:
+Since this will be quite a large project, you will split it into manageable chunks and put each chunk in a separately compiled module, and then use a Makefile. However, the Makefile is not due until Part 2.
+
+In part 1 you will write the "parser". A parser's job is to break up the line into its constituent logical parts. That means it needs to figure out if there is any input/output redirection (the < and > characters), how many pipes there are on the command line (which is one less than the number of commands between pipes---eg., “who | we” is two commands separated by one pipe), and what the command line arguments are to each command.
+
+You should create a **struct** which will hold a full command line with all this information, and put its definition into a file called **parse.h**. The file **parse.h** also contains a prototype for the function **Parse**, which will be defined in the file **parse.c**.
+
+Then create **parse.c**, which contains the code for the actual parser.
+
+The file **main.c** will contain a loop which (for now) just reads a line, pasess that line to the function **Parse**. **Parse** will populate the **struct** with the logical info on the command line, and then your **main** program will print out the parsed version of the command line.
+
+For example, given “cat –v <infile | grep foo | wc > outfile”, the Part 1 version of your main program should print:
   - `3: <’infile’ ‘cat’ ‘-v’ | ‘grep’ ‘foo’ | ‘wc’ > ‘outfile`
 
 The ‘3’ represents the number of commands, and each “word” is printed with quotes around it. Input/output redirection should only be printed if they are present. So for example “who | wc” should give:
