@@ -5,7 +5,7 @@
 
 int main() {
   struct Line lineIn;
-  char *string = "This is a string";
+  char string[] = "This is a string";
   Parse(string, &lineIn);
   return 0;
 }
