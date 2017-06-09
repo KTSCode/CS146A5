@@ -1,5 +1,6 @@
 all:
-	gcc -w *.c *.h -o nsh
+	gcc -w src/* -o nsh
+	./test.sh
 
 clean:
 	rm nsh
