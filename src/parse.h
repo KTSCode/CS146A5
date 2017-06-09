@@ -74,5 +74,6 @@ struct commandLine
 ** Function prototype for the scanner/parser
 */
 int Parse(char *line, struct commandLine *sc);
+int Execute(char *cwd, char *input, int cmdIndex, int args, struct commandLine *sc, char *output);
 
 extern void perror(const char *);

@@ -1,7 +1,4 @@
 #!/bin/bash
-
-./nsh tests/test.nsh >> out.txt
-cmp --silent out.txt tests/outtest.txt && echo '### SUCCESS: tests pass!' || echo '### FAILURE: tests fail!'
-
-rm out.txt
+./runTest.sh "echo cd pwd" "test1.nsh" "outtest1.txt"
+./runTest.sh "ls" "test2.nsh" "outtest2.txt"
 

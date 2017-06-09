@@ -1,0 +1,5 @@
+this was echoed
+/home/x/Dropbox/School/CS146_UNIX_Multisystems/Assignments/FinalProject/tests
+/home/x/Dropbox/School/CS146_UNIX_Multisystems/Assignments/FinalProject
+/home/x/Dropbox/School/CS146_UNIX_Multisystems/Assignments/FinalProject
+/
