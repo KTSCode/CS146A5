@@ -1,4 +1,20 @@
 # CS 146 Assignment #5 (Project)
+Kyle San Clemente
+33685024
+
+## TA README
+  - I definitely shouldn't get full credit for this, I wasn't able to meet all the requirements, and I did kind of a bad job in my implementation. I did not set aside enough time to complete this project.
+  - I have created a test script called test.sh, it depends on the script runTest.sh
+  - I have created a Makefile which compiles all my code, and runs my test script
+  - *Please make sure that the file structure matches what is in the zip file to run the test script/Makefile*
+  - The nsh file should work fine alone, I have only implemented the following commands
+    - echo
+    - cd
+    - pwd
+    - ls
+    - exit
+    - cat
+    - piping to cat *cat is the only command that can be piped to*
 
 ### Due dates:
  - Part 2: Friday June 9th 10:59pm
@@ -7,10 +23,14 @@
 
 ## PART 2: Executing Commands (15 or more marks, due Thu of Week 10.)
 ### TODO
+  - [x] set up test script
   - [x] make echo work
+  - [x] make cd work
+  - [x] make ls work
+  - [x] make pwd work
+  - [x] make exit work
   - [x] implement cat
-  - [ ] implement grep
-  - [ ] implement piping
+  - [x] implement piping
   - [ ] implement infile
   - [ ] implement outfile
 
