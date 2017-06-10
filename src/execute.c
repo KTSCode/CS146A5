@@ -1,5 +1,7 @@
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include <errno.h>
 #include <dirent.h>
@@ -96,7 +98,6 @@ int Execute(char *cwd, char *input, int cmdIndex, int args, struct commandLine *
       }
       qsort(dirEnts, i, sizeof(struct dirent), alphaSort);
       int j;
-//      printf("%d", sizeof(dirEnts))
       for (j = 0; j < i; j++){
         struct dirent *tempdr = &dirEnts[j];
         strcat(output, tempdr->d_name);
@@ -108,9 +109,30 @@ int Execute(char *cwd, char *input, int cmdIndex, int args, struct commandLine *
       closedir(dir); //close the directory
     }
     else{
-      sprintf(output, "ls: cannot access %s No such file or directory", dirName);
+      printf("ls: cannot access %s No such file or directory", dirName);
     }
-
+  }
+  else if (strcmp(command, "cat") == 0){ //cat
+    FILE *file;
+    char line[MAX_LINE];
+    if (sc->argv[args+1] != NULL){
+      file = fopen(sc->argv[args+1], "r");
+      if(file == NULL)
+      {
+        printf("cat: %s: No such file or directory", sc->argv[args+1]);
+      }
+      else {
+        while(fgets(line, sizeof(line), file)){
+          strcat(output, line);
+        }
+        if(strlen(output) > 0){
+          output[strlen(output)-1] = '\0';//removes the trailing white space
+        }
+      }
+    }
+  }
+  else if (strcmp(command, "grep") == 0){ //cat
+    
   }
   else {
   }

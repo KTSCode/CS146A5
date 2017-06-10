@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
 
     if(cmdLine.infile) //TODO do infile stuff
-      printf("< '%s' ", cmdLine.infile);
+//      printf("< '%s' ", cmdLine.infile);
 
     for(i=0; i < cmdLine.numCommands; i++)
     {
@@ -68,18 +68,21 @@ int main(int argc, char *argv[])
       if (Execute(cwd, cmdIn, cmdLine.cmdStart[i], j, &cmdLine, cmdOut) != 0)
         printf("Error Processing Command");
 
-      if(i < cmdLine.numCommands - 1)
-        printf("| ");
+      if(i < cmdLine.numCommands - 1){
+        strcpy(cmdIn, cmdOut);
+        if (Execute(cwd, cmdIn, cmdLine.cmdStart[i], j, &cmdLine, cmdOut) != 0)
+          printf("Error Processing Command");
+      }
     }
 
     if(cmdLine.append)//TODO do append stuff
     {
       /* verify that if we're appending there should be an outfile! */
       assert(cmdLine.outfile);
-      printf(">");
+//      printf(">");
     }
     if(cmdLine.outfile)//TODO do outfile stuff
-      printf(">'%s'", cmdLine.outfile);
+//      printf(">'%s'", cmdLine.outfile);
 
     /* Print any other relevant info here, such as '&' if you implement
      * background execution, etc.

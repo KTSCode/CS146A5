@@ -7,8 +7,12 @@
 
 ## PART 2: Executing Commands (15 or more marks, due Thu of Week 10.)
 ### TODO
-  -  [ ] use flex and bison to read in echo and parse it accordingly
-  -  [ ] make echo work
+  - [x] make echo work
+  - [x] implement cat
+  - [ ] implement grep
+  - [ ] implement piping
+  - [ ] implement infile
+  - [ ] implement outfile
 
 ### Details
   In Part 2 you will execute the commands using system calls. As mentioned above, the shell MUST implement shell scripting to facilitate easy testing of your shell, and your shell should be able to handle commands with at least one pipe. Handling multiple pipes (ie., more than 2 commands piped together) is worth extra marks, as described below
