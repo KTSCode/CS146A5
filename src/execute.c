@@ -61,8 +61,7 @@ int Execute(char *cwd, char *input, int cmdIndex, int args, struct commandLine *
       }
     }
     else{
-      strcpy(output, dirName);
-      strcpy(output, " is not a valid directory");
+      printf("cd: %s is not a valid directory\n", dirName);
     }
 
   }
@@ -109,7 +108,7 @@ int Execute(char *cwd, char *input, int cmdIndex, int args, struct commandLine *
       closedir(dir); //close the directory
     }
     else{
-      printf("ls: cannot access %s No such file or directory", dirName);
+      printf("ls: cannot access %s No such file or directory\n", dirName);
     }
   }
   else if (strcmp(command, "cat") == 0){ //cat
@@ -119,7 +118,7 @@ int Execute(char *cwd, char *input, int cmdIndex, int args, struct commandLine *
       file = fopen(sc->argv[args+1], "r");
       if(file == NULL)
       {
-        printf("cat: %s: No such file or directory", sc->argv[args+1]);
+        printf("cat: %s: No such file or directory\n", sc->argv[args+1]);
       }
       else {
         while(fgets(line, sizeof(line), file)){
@@ -130,9 +129,13 @@ int Execute(char *cwd, char *input, int cmdIndex, int args, struct commandLine *
         }
       }
     }
+    else if (strlen(input) > 0){
+      strcpy(output, input);
+    }
+
   }
-  else if (strcmp(command, "grep") == 0){ //cat
-    
+  else if (strcmp(command, "exit") == 0){ //exit
+    exit(0);
   }
   else {
   }
